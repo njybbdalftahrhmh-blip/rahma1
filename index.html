@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>رحمة | استراتيجية المحتوى والتصميم</title>
+    <style>
+        /* استيراد الخطوط العربية لتناسب أسلوب الكولاج (خط عريض للعناوين، وخط كلاسيكي للزخرفة) */
+        @import url('https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Cairo:wght@400;700;900&family=Changa:wght@800&display=swap');
+
+        :root {
+            --dark-red: #6e0b14;
+            --cream: #f4ecd8;
+            --black: #1a1a1a;
+            --folder-brown: #d2b48c;
+            --folder-dark: #3a3a3a;
+            --paper-lines: #cfcfcf;
+            
+            --font-heavy: 'Changa', sans-serif; /* للعناوين الضخمة */
+            --font-script: 'Aref Ruqaa', serif; /* للخطوط المزخرفة */
+            --font-body: 'Cairo', sans-serif; /* للنصوص العادية */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--dark-red);
+            color: var(--black);
+            font-family: var(--font-body);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* --- تأثيرات الكولاج العامة --- */
+        .tape {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.4);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+            backdrop-filter: blur(2px);
+        }
+        
+        .polaroid {
+            background: #fff;
+            padding: 10px 10px 40px 10px;
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.5);
+            border: 1px solid #ddd;
+            position: relative;
+        }
+
+        .torn-paper {
+            background: var(--cream);
+            box-shadow: 3px 3px 10px rgba(0,0,0,0.4);
+            position: relative;
+        }
+        /* حافة ممزقة وهمية */
+        .torn-paper::after {
+            content: "";
+            position: absolute;
+            bottom: -5px; left: 0; right: 0; height: 10px;
+            background: inherit;
+            clip-path: polygon(0% 0%, 5% 100%, 10% 0%, 15% 100%, 20% 0%, 25% 100%, 30% 0%, 35% 100%, 40% 0%, 45% 100%, 50% 0%, 55% 100%, 60% 0%, 65% 100%, 70% 0%, 75% 100%, 80% 0%, 85% 100%, 90% 0%, 95% 100%, 100% 0%);
+        }
+
+        .lace-border {
+            background-image: radial-gradient(circle at 10px 0, transparent 10px, var(--cream) 11px);
+            background-size: 20px 20px;
+            background-position: top;
+            background-repeat: repeat-x;
+            height: 20px;
+            width: 100%;
+        }
+
+        /* --- 1. قسم "تعرف على المصممة/الاستراتيجية" --- */
+        .hero-section {
+            position: relative;
+            min-height: 90vh;
+            padding: 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: url('data:image/svg+xml;utf8,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="1" fill="%23ffffff" fill-opacity="0.2"/></svg>');
+        }
+
+        .hero-text {
+            width: 50%;
+            color: var(--cream);
+            position: relative;
+            z-index: 10;
+        }
+
+        .hero-text h1 {
+            font-family: var(--font-heavy);
+            font-size: clamp(4rem, 8vw, 7rem);
+            line-height: 0.9;
+            margin-bottom: 1rem;
+            text-shadow: 3px 3px 0px rgba(0,0,0,0.3);
+            letter-spacing: -2px;
+        }
+
+        .hero-text p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            max-width: 400px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .hero-collage {
+            width: 40%;
+            position: relative;
+            height: 500px;
+        }
+
+        .hero-frame {
+            position: absolute;
+            top: 20px;
+            left: 50px;
+            width: 300px;
+            height: 300px;
+            background: var(--dark-red);
+            border: 15px solid var(--cream);
+            border-image: url('data:image/svg+xml;utf8,<svg width="30" height="30" xmlns="http://www.w3.org/2000/svg"><circle cx="15" cy="15" r="10" fill="%23f4ecd8"/></svg>') 10 stretch;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform: rotate(5deg);
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.5), 10px 10px 20px rgba(0,0,0,0.4);
+        }
+
+        .hero-frame h2 {
+            font-family: var(--font-script);
+            font-size: 4rem;
+            color: var(--cream);
+            transform: rotate(-10deg);
+            text-align: center;
+            line-height: 1;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .photo-1 {
+            width: 180px;
+            position: absolute;
+            top: -20px;
+            left: -30px;
+            transform: rotate(-8deg);
+            z-index: 2;
+        }
+
+        .photo-2 {
+            width: 200px;
+            position: absolute;
+            bottom: -50px;
+            left: 20px;
+            transform: rotate(12deg);
+            z-index: 3;
+            filter: sepia(0.5) contrast(1.2);
+        }
+
+        /* --- 2. قسم المهارات والأدوات (رقعة الشطرنج) --- */
+        .skills-section {
+            position: relative;
+            padding: 6rem 4rem;
+            min-height: 80vh;
+            /* نمط رقعة الشطرنج المائل */
+            background-color: var(--cream);
+            background-image: linear-gradient(45deg, var(--black) 25%, transparent 25%, transparent 75%, var(--black) 75%, var(--black)),
+                              linear-gradient(45deg, var(--black) 25%, transparent 25%, transparent 75%, var(--black) 75%, var(--black));
+            background-size: 100px 100px;
+            background-position: 0 0, 50px 50px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .skills-boxes {
+            width: 40%;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            z-index: 5;
+        }
+
+        .skill-box {
+            background: var(--dark-red);
+            color: var(--cream);
+            padding: 1.5rem 2rem;
+            border-radius: 15px;
+            box-shadow: 8px 8px 0px rgba(0,0,0,0.8);
+            transform: rotate(-2deg);
+            transition: transform 0.3s;
+        }
+
+        .skill-box:nth-child(even) {
+            transform: rotate(3deg);
+            margin-right: 2rem;
+        }
+
+        .skill-box:hover {
+            transform: scale(1.05) rotate(0deg);
+        }
+
+        .skill-box h3 {
+            font-family: var(--font-script);
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(244, 236, 216, 0.3);
+            padding-bottom: 0.5rem;
+        }
+
+        .skills-folders {
+            width: 50%;
+            position: relative;
+            height: 500px;
+        }
+
+        .folder-back {
+            position: absolute;
+            width: 400px;
+            height: 450px;
+            background: var(--folder-brown);
+            border-radius: 5px 20px 5px 5px;
+            box-shadow: 10px 10px 20px rgba(0,0,0,0.5);
+            transform: rotate(5deg);
+            right: 0;
+            top: 20px;
+        }
+        
+        .folder-back::before {
+            content: '';
+            position: absolute;
+            top: -20px; left: 0;
+            width: 150px; height: 30px;
+            background: var(--folder-brown);
+            border-radius: 10px 10px 0 0;
+        }
+
+        .folder-front {
+            position: absolute;
+            width: 420px;
+            height: 480px;
+            background: var(--folder-dark);
+            border-radius: 5px;
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.6);
+            transform: rotate(-4deg);
+            right: -20px;
+            top: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--cream);
+        }
+
+        .folder-front h2 {
+            font-family: var(--font-heavy);
+            font-size: 5rem;
+            line-height: 0.8;
+            text-align: center;
+            text-shadow: 2px 2px 0px rgba(0,0,0,1);
+        }
+
+        .paper-slip {
+            position: absolute;
+            background: #fff;
+            width: 300px;
+            height: 400px;
+            right: 50px;
+            top: 10px;
+            transform: rotate(8deg);
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+            background-image: repeating-linear-gradient(transparent, transparent 29px, var(--paper-lines) 30px);
+        }
+
+        /* --- 3. قسم الأعمال (دفتر السلك والكولاج) --- */
+        .work-section {
+            position: relative;
+            padding: 6rem 2rem;
+            background: var(--dark-red);
+        }
+
+        .notebook {
+            background: var(--cream);
+            max-width: 1000px;
+            margin: 0 auto;
+            min-height: 600px;
+            border-radius: 10px;
+            box-shadow: inset 0 0 50px rgba(0,0,0,0.1), 15px 15px 30px rgba(0,0,0,0.6);
+            display: flex;
+            position: relative;
+            background-image: 
+                linear-gradient(90deg, transparent 95%, rgba(0,0,0,0.05) 100%),
+                repeating-linear-gradient(transparent, transparent 39px, var(--paper-lines) 40px);
+        }
+
+        .spiral {
+            position: absolute;
+            top: 0; left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 100%;
+            background-image: radial-gradient(circle, #333 30%, transparent 35%);
+            background-size: 40px 40px;
+            z-index: 10;
+        }
+
+        .notebook-page {
+            flex: 1;
+            padding: 3rem;
+            position: relative;
+        }
+
+        .work-title-area {
+            position: relative;
+            margin-bottom: 2rem;
+            transform: rotate(-3deg);
+        }
+
+        .work-title-area h2 {
+            font-family: var(--font-heavy);
+            font-size: 4.5rem;
+            line-height: 0.9;
+            color: var(--dark-red);
+        }
+
+        .work-title-area .script-text {
+            font-family: var(--font-script);
+            font-size: 5rem;
+            color: var(--black);
+            position: absolute;
+            bottom: -40px;
+            right: 40px;
+        }
+
+        .project-scrap {
+            position: absolute;
+            cursor: pointer;
+            transition: transform 0.3s, z-index 0s;
+        }
+
+        .project-scrap:hover {
+            transform: scale(1.1) rotate(0deg) !important;
+            z-index: 50 !important;
+        }
+
+        .project-1 {
+            width: 250px;
+            bottom: 50px; right: 50px;
+            transform: rotate(5deg);
+            z-index: 3;
+        }
+
+        .project-2 {
+            width: 200px;
+            top: 100px; left: 50px;
+            transform: rotate(-8deg);
+            z-index: 4;
+            border: 10px solid #fff;
+            border-bottom-width: 40px;
+            background: #fff;
+            box-shadow: 4px 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .project-3 {
+            width: 220px;
+            bottom: 80px; left: 150px;
+            transform: rotate(12deg);
+            z-index: 5;
+            padding: 10px;
+            background: #222;
+            color: #fff;
+            box-shadow: 5px 5px 0px rgba(0,0,0,0.8);
+        }
+
+        .project-img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .denim-patch {
+            position: absolute;
+            bottom: -20px;
+            left: -20px;
+            width: 300px;
+            height: 150px;
+            background: #2a4b7c;
+            background-image: url('data:image/svg+xml;utf8,<svg width="4" height="4" xmlns="http://www.w3.org/2000/svg"><rect width="4" height="4" fill="none"/><path d="M0 4L4 0M-1 1L1 -1M3 5L5 3" stroke="%233a6b9c" stroke-width="1"/></svg>');
+            border: 2px dashed #f6a122;
+            transform: rotate(-5deg);
+            z-index: 1;
+            box-shadow: 3px 3px 10px rgba(0,0,0,0.5);
+            border-radius: 10px;
+        }
+
+        /* --- 4. النوافذ المنبثقة (Modals) بأسلوب القصاصات --- */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(26, 26, 26, 0.9);
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 2rem;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            max-width: 800px;
+            margin: 2rem auto;
+            background: var(--cream);
+            padding: 3rem;
+            position: relative;
+            box-shadow: 15px 15px 0px var(--dark-red);
+            border: 2px solid var(--black);
+            background-image: repeating-linear-gradient(transparent, transparent 29px, #d0d0d0 30px);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            width: 50px;
+            height: 50px;
+            background: var(--dark-red);
+            color: var(--cream);
+            font-family: var(--font-heavy);
+            font-size: 2rem;
+            border: 2px solid var(--black);
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 3px 3px 0px var(--black);
+        }
+
+        .modal-body h2 {
+            font-family: var(--font-heavy);
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark-red);
+            text-shadow: 1px 1px 0px rgba(0,0,0,0.2);
+        }
+
+        .tags {
+            font-family: var(--font-script);
+            color: var(--black);
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            background: rgba(255,255,255,0.5);
+            padding: 5px 15px;
+            display: inline-block;
+            transform: rotate(-2deg);
+            border: 1px dashed var(--dark-red);
+        }
+
+        .modal-body p {
+            font-size: 1.1rem;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 15px;
+            margin-bottom: 1.5rem;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+        }
+
+        /* الكاروسيل */
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            border: 5px solid white;
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.4);
+            margin-bottom: 2rem;
+            overflow: hidden;
+            background: #000;
+            transform: rotate(1deg);
+        }
+
+        .carousel-track {
+            display: flex;
+            width: 100%;
+            transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .carousel-track img {
+            width: 100%;
+            flex-shrink: 0;
+            aspect-ratio: 16/9;
+            object-fit: cover;
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--dark-red);
+            color: var(--cream);
+            border: none;
+            width: 40px; height: 40px;
+            cursor: pointer;
+            z-index: 5;
+            font-size: 1.5rem;
+            font-family: var(--font-heavy);
+        }
+        .carousel-btn.prev { right: 10px; } /* معكوسة لأن الاتجاه RTL */
+        .carousel-btn.next { left: 10px; }
+
+        /* --- 5. قسم التواصل --- */
+        .contact-section {
+            padding: 6rem 2rem;
+            text-align: center;
+            background: var(--cream);
+            position: relative;
+            border-top: 10px dashed var(--dark-red);
+        }
+
+        .contact-paper {
+            background: #fff;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            box-shadow: 5px 5px 20px rgba(0,0,0,0.3);
+            transform: rotate(-1deg);
+            position: relative;
+        }
+
+        .contact-paper::before {
+            content: '';
+            position: absolute;
+            top: -15px; left: 50%;
+            transform: translateX(-50%);
+            width: 100px; height: 30px;
+            background: rgba(200, 50, 50, 0.5);
+            backdrop-filter: blur(2px);
+        }
+
+        .contact-paper h2 {
+            font-family: var(--font-heavy);
+            font-size: 4rem;
+            color: var(--dark-red);
+        }
+
+        .contact-paper .script-text {
+            font-family: var(--font-script);
+            font-size: 3rem;
+            display: block;
+            margin-bottom: 2rem;
+        }
+
+        .social-links {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            font-family: var(--font-heavy);
+            font-size: 2.5rem;
+            color: var(--black);
+            text-decoration: none;
+            transition: color 0.3s, transform 0.3s;
+            display: inline-block;
+        }
+
+        .social-links a:hover {
+            color: var(--dark-red);
+            transform: scale(1.1) rotate(2deg);
+        }
+
+        @media (max-width: 900px) {
+            .hero-section { flex-direction: column; text-align: center; padding: 2rem; }
+            .hero-text { width: 100%; margin-bottom: 3rem; }
+            .hero-collage { width: 100%; display: flex; justify-content: center; }
+            .skills-section { flex-direction: column; padding: 3rem 1rem; }
+            .skills-boxes, .skills-folders { width: 100%; }
+            .notebook { flex-direction: column; }
+            .spiral { display: none; }
+            .project-scrap { position: relative; margin: 1rem auto; bottom: auto; right: auto; left: auto; top: auto; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="lace-border"></div>
+
+    <section class="hero-section">
+        <div class="hero-text">
+            <h1>تعرف على<br>الاستراتيجية</h1>
+            <p>أنا رحمة، خبيرة استراتيجيات المحتوى والتصميم. بالنسبة لي، التخطيط هو مساحتي الحقيقية. أركز على مسارات العمل القائمة على الأبحاث، وبناء الهياكل المعمارية للمشاريع الرقمية باستخدام النماذج اللغوية وهندسة التلقين.</p>
+            <p>شغفي يكمن في التجربة المعرفية، التكويد الإبداعي (Vibe Coding)، وتحليل السرديات بعمق لبناء عالمي الرقمي الخاص.</p>
+        </div>
+        
+        <div class="hero-collage">
+            <div class="hero-frame">
+                <h2>Rahma<br>Creates</h2>
+            </div>
+            <div class="polaroid photo-1">
+                <div class="tape" style="width: 60px; height: 20px; top: -10px; left: 50%; transform: translateX(-50%) rotate(-5deg);"></div>
+                <img src="https://images.unsplash.com/photo-1455390582262-044cdead27d8?w=300&q=80" alt="كتابة استراتيجية" style="width: 100%;">
+            </div>
+            <div class="polaroid photo-2">
+                <div class="tape" style="width: 80px; height: 25px; top: -10px; left: 50%; transform: translateX(-50%) rotate(3deg);"></div>
+                <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=300&q=80" alt="تكنولوجيا وريترو" style="width: 100%;">
+            </div>
+        </div>
+    </section>
+
+    <section class="skills-section">
+        <div class="skills-boxes">
+            <div class="skill-box torn-paper">
+                <h3>هندسة التلقين و LLMs</h3>
+                <p>بناء مسارات RAG وهندسة التلقين المتقدمة للحصول على مخرجات دقيقة، أكاديمية، وغير تقليدية من النماذج اللغوية.</p>
+            </div>
+            <div class="skill-box torn-paper">
+                <h3>Vibe Coding</h3>
+                <p>بناء وتكويد واجهات تفاعلية راقية ذات طابع نيو-ريترو (Neo-Retro) باستخدام HTML/CSS/JS بأساليب إبداعية غير نمطية.</p>
+            </div>
+            <div class="skill-box torn-paper">
+                <h3>البحث والتحليل المعرفي</h3>
+                <p>تطوير استراتيجيات محتوى متعمقة، وتحليل السرديات السينمائية وتفكيك الازدواجية النفسية ودمجها في العمل الرقمي.</p>
+            </div>
+        </div>
+        
+        <div class="skills-folders">
+            <div class="paper-slip"></div>
+            <div class="folder-back"></div>
+            <div class="folder-front">
+                <h2>الأدوات<br>&<br>المهارات</h2>
+            </div>
+        </div>
+    </section>
+
+    <section class="work-section">
+        <div class="lace-border" style="position: absolute; top: 0; left: 0;"></div>
+        
+        <div class="notebook">
+            <div class="spiral"></div>
+            
+            <div class="notebook-page">
+                <div class="work-title-area torn-paper" style="padding: 20px; width: fit-content; background: #fff;">
+                    <h2>بعض من<br>أعمالي</h2>
+                    <span class="script-text">المشاريع</span>
+                </div>
+                
+                <div class="denim-patch"></div>
+                
+                <div class="project-scrap project-3" onclick="openModal('modal3')">
+                    <div class="tape" style="width: 50px; height: 15px; top: -5px; right: 20px;"></div>
+                    <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?w=400&q=80" alt="سينما" class="project-img" style="filter: grayscale(100%);">
+                    <h3 style="font-family: var(--font-heavy); text-align: center; margin-top: 10px;">تحليل سينمائي</h3>
+                </div>
+            </div>
+
+            <div class="notebook-page">
+                <div class="project-scrap torn-paper project-1" style="padding: 10px; background: #ff9d00;" onclick="openModal('modal1')">
+                    <h3 style="font-family: var(--font-script); font-size: 2rem; color: #fff; text-align: center;">Keep Going!</h3>
+                    <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&q=80" alt="بيانات" class="project-img">
+                    <p style="font-family: var(--font-heavy); text-align: center; line-height: 1; margin-top: 5px;">RAG Pipeline</p>
+                </div>
+
+                <div class="project-scrap project-2" onclick="openModal('modal2')">
+                    <div class="tape" style="width: 60px; height: 20px; top: -10px; left: 50%; transform: translateX(-50%);"></div>
+                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=400&q=80" alt="نيو ريترو" class="project-img">
+                    <span style="font-family: var(--font-script); color: var(--dark-red); display: block; text-align: center; margin-top: 10px; font-size: 1.5rem;">Neo-Retro</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section">
+        <div class="contact-paper torn-paper">
+            <h2>لنعمل معاً</h2>
+            <span class="script-text">تواصل معي</span>
+            
+            <div class="social-links">
+                <a href="#" target="_blank">◉ حساب Pinterest</a>
+                <a href="#" target="_blank">◉ مستودع GitHub</a>
+                <a href="#" target="_blank">◉ منصة LinkedIn</a>
+                <a href="mailto:hello@example.com">◉ البريد الإلكتروني</a>
+            </div>
+        </div>
+    </section>
+
+    <div id="modal1" class="modal">
+        <div class="modal-content torn-paper">
+            <button class="close-btn" onclick="closeModal('modal1')">×</button>
+            <div class="modal-body">
+                <h2>هيكلة بيانات النماذج اللغوية</h2>
+                <div class="tags">هندسة التلقين • مسارات RAG • استراتيجية تحليلية</div>
+                
+                <div class="carousel-container" id="slider1">
+                    <button class="carousel-btn prev" onclick="moveSlide('slider1', -1)">&#10095;</button> <div class="carousel-track">
+                        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80" alt="هندسة بيانات">
+                        <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=80" alt="خوادم">
+                    </div>
+                    <button class="carousel-btn next" onclick="moveSlide('slider1', 1)">&#10094;</button>
+                </div>
+
+                <p>ركز هذا المشروع على تأسيس مسار توليد معزز بالاسترجاع (RAG) لقاعدة بيانات أكاديمية. الهدف كان تدريب النموذج على استخلاص معلومات من وجهات نظر متنوعة، علمية، وغير سائدة.</p>
+                <p>تضمن دوري البحث التحليلي العميق، ورسم الخرائط المنطقية، وتنفيذ هندسة التلقين (Prompt Engineering) لضمان تقديم الذكاء الاصطناعي لمخرجات دقيقة وذات أبعاد متعددة.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal2" class="modal">
+        <div class="modal-content torn-paper">
+            <button class="close-btn" onclick="closeModal('modal2')">×</button>
+            <div class="modal-body">
+                <h2>الأرشيف الرقمي النيو-ريترو</h2>
+                <div class="tags">Vibe Coding • جماليات Y2K • نشر الويب</div>
+                
+                <div class="carousel-container" id="slider2">
+                    <button class="carousel-btn prev" onclick="moveSlide('slider2', -1)">&#10095;</button>
+                    <div class="carousel-track">
+                        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&q=80" alt="فن رقمي">
+                        <img src="https://images.unsplash.com/photo-1614729939124-032f0b56c9ce?w=800&q=80" alt="خلل بصري">
+                    </div>
+                    <button class="carousel-btn next" onclick="moveSlide('slider2', 1)">&#10094;</button>
+                </div>
+
+                <p>محفظة تفاعلية تم بناؤها بالكامل باستخدام HTML و CSS و JS، ونشرها على GitHub Pages. يمثل هذا المشروع مساحة للتجريب البصري ودمج أنظمة الشبكات الحديثة مع جماليات حقبة Y2K.</p>
+                <p>تعتمد الواجهة بشكل كبير على متغيرات CSS، والدمج غير التقليدي للخطوط، وحركات الواجهة التي تتحدى التصميم الشبكي المتماثل المعتاد.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal3" class="modal">
+        <div class="modal-content torn-paper">
+            <button class="close-btn" onclick="closeModal('modal3')">×</button>
+            <div class="modal-body">
+                <h2>تحليل السرديات السينمائية</h2>
+                <div class="tags">مونتاج فيديو • استراتيجية محتوى • الازدواجية النفسية</div>
+                
+                <div class="carousel-container" id="slider3">
+                    <button class="carousel-btn prev" onclick="moveSlide('slider3', -1)">&#10095;</button>
+                    <div class="carousel-track">
+                        <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?w=800&q=80" alt="كاميرا كلاسيكية">
+                        <img src="https://images.unsplash.com/photo-1574717024453-354056a3df3c?w=800&q=80" alt="شريط سينمائي">
+                    </div>
+                    <button class="carousel-btn next" onclick="moveSlide('slider3', 1)">&#10094;</button>
+                </div>
+
+                <p>تحليل استراتيجي شامل للازدواجية النفسية في السينما الحديثة. تضمن هذا المشروع استهلاكاً تحليلياً عميقاً للوسائط المتعددة، وتُرجم إلى مقال مرئي (Video Essay) تفاعلي.</p>
+                <p>باستخدام برامج مثل DaVinci Resolve، تم تحسين عملية المونتاج تقنياً لخدمة إيقاع السرد، مع دمج تقنيات القص المرئي متعددة الطبقات مع نتائج البحث الأكاديمية.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- النوافذ المنبثقة (Modals) ---
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+            document.body.style.overflow = 'hidden'; 
+            
+            // إعادة تعيين السلايدر عند الفتح
+            const sliderId = modalId.replace('modal', 'slider');
+            sliderStates[sliderId] = 0;
+            updateSliderPosition(sliderId);
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+            document.body.style.overflow = 'auto'; 
+        }
+
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = "none";
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // --- الكاروسيل بمسار RTL ---
+        const sliderStates = { 'slider1': 0, 'slider2': 0, 'slider3': 0 };
+
+        function moveSlide(sliderId, direction) {
+            const container = document.getElementById(sliderId);
+            const track = container.querySelector('.carousel-track');
+            const totalSlides = track.querySelectorAll('img').length;
+
+            sliderStates[sliderId] += direction;
+
+            if (sliderStates[sliderId] >= totalSlides) {
+                sliderStates[sliderId] = 0;
+            } else if (sliderStates[sliderId] < 0) {
+                sliderStates[sliderId] = totalSlides - 1;
+            }
+
+            updateSliderPosition(sliderId);
+        }
+
+        function updateSliderPosition(sliderId) {
+            const container = document.getElementById(sliderId);
+            const track = container.querySelector('.carousel-track');
+            // الاتجاه معكوس لأننا في بيئة RTL
+            const offset = (sliderStates[sliderId] * 100); 
+            track.style.transform = `translateX(${offset}%)`;
+        }
+    </script>
+</body>
+</html>
