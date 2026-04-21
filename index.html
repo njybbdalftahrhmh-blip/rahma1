@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>رحمة | استراتيجية المحتوى والتصميم</title>
     <style>
-        /* استيراد الخطوط العربية لتناسب أسلوب الكولاج (خط عريض للعناوين، وخط كلاسيكي للزخرفة) */
+        /* استيراد الخطوط */
         @import url('https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Cairo:wght@400;700;900&family=Changa:wght@800&display=swap');
 
         :root {
@@ -16,9 +16,9 @@
             --folder-dark: #3a3a3a;
             --paper-lines: #cfcfcf;
             
-            --font-heavy: 'Changa', sans-serif; /* للعناوين الضخمة */
-            --font-script: 'Aref Ruqaa', serif; /* للخطوط المزخرفة */
-            --font-body: 'Cairo', sans-serif; /* للنصوص العادية */
+            --font-heavy: 'Changa', sans-serif;
+            --font-script: 'Aref Ruqaa', serif;
+            --font-body: 'Cairo', sans-serif;
         }
 
         * {
@@ -41,6 +41,7 @@
             background-color: rgba(255, 255, 255, 0.4);
             box-shadow: 0 1px 3px rgba(0,0,0,0.2);
             backdrop-filter: blur(2px);
+            z-index: 10;
         }
         
         .polaroid {
@@ -48,7 +49,7 @@
             padding: 10px 10px 40px 10px;
             box-shadow: 5px 5px 15px rgba(0,0,0,0.5);
             border: 1px solid #ddd;
-            position: relative;
+            position: absolute;
         }
 
         .torn-paper {
@@ -56,7 +57,6 @@
             box-shadow: 3px 3px 10px rgba(0,0,0,0.4);
             position: relative;
         }
-        /* حافة ممزقة وهمية */
         .torn-paper::after {
             content: "";
             position: absolute;
@@ -74,7 +74,7 @@
             width: 100%;
         }
 
-        /* --- 1. قسم "تعرف على المصممة/الاستراتيجية" --- */
+        /* --- 1. قسم البداية --- */
         .hero-section {
             position: relative;
             min-height: 90vh;
@@ -83,6 +83,7 @@
             justify-content: space-between;
             align-items: center;
             background: url('data:image/svg+xml;utf8,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="1" fill="%23ffffff" fill-opacity="0.2"/></svg>');
+            overflow: hidden;
         }
 
         .hero-text {
@@ -94,7 +95,7 @@
 
         .hero-text h1 {
             font-family: var(--font-heavy);
-            font-size: clamp(4rem, 8vw, 7rem);
+            font-size: clamp(3.5rem, 6vw, 7rem);
             line-height: 0.9;
             margin-bottom: 1rem;
             text-shadow: 3px 3px 0px rgba(0,0,0,0.3);
@@ -104,7 +105,7 @@
         .hero-text p {
             font-size: 1.1rem;
             margin-bottom: 1.5rem;
-            max-width: 400px;
+            max-width: 450px;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
         }
 
@@ -116,8 +117,8 @@
 
         .hero-frame {
             position: absolute;
-            top: 20px;
-            left: 50px;
+            top: 50px;
+            left: 10%;
             width: 300px;
             height: 300px;
             background: var(--dark-red);
@@ -128,6 +129,7 @@
             justify-content: center;
             transform: rotate(5deg);
             box-shadow: inset 0 0 20px rgba(0,0,0,0.5), 10px 10px 20px rgba(0,0,0,0.4);
+            z-index: 1;
         }
 
         .hero-frame h2 {
@@ -142,29 +144,25 @@
 
         .photo-1 {
             width: 180px;
-            position: absolute;
-            top: -20px;
-            left: -30px;
+            top: 10px;
+            left: -10%;
             transform: rotate(-8deg);
             z-index: 2;
         }
 
         .photo-2 {
             width: 200px;
-            position: absolute;
-            bottom: -50px;
-            left: 20px;
+            bottom: 30px;
+            right: 0%;
             transform: rotate(12deg);
             z-index: 3;
             filter: sepia(0.5) contrast(1.2);
         }
 
-        /* --- 2. قسم المهارات والأدوات (رقعة الشطرنج) --- */
+        /* --- 2. قسم المهارات والأدوات --- */
         .skills-section {
             position: relative;
             padding: 6rem 4rem;
-            min-height: 80vh;
-            /* نمط رقعة الشطرنج المائل */
             background-color: var(--cream);
             background-image: linear-gradient(45deg, var(--black) 25%, transparent 25%, transparent 75%, var(--black) 75%, var(--black)),
                               linear-gradient(45deg, var(--black) 25%, transparent 25%, transparent 75%, var(--black) 75%, var(--black));
@@ -173,10 +171,11 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            overflow: hidden;
         }
 
         .skills-boxes {
-            width: 40%;
+            width: 45%;
             display: flex;
             flex-direction: column;
             gap: 2rem;
@@ -195,7 +194,7 @@
 
         .skill-box:nth-child(even) {
             transform: rotate(3deg);
-            margin-right: 2rem;
+            margin-right: auto;
         }
 
         .skill-box:hover {
@@ -204,7 +203,7 @@
 
         .skill-box h3 {
             font-family: var(--font-script);
-            font-size: 2.5rem;
+            font-size: 2rem;
             margin-bottom: 0.5rem;
             border-bottom: 1px solid rgba(244, 236, 216, 0.3);
             padding-bottom: 0.5rem;
@@ -216,15 +215,19 @@
             height: 500px;
         }
 
-        .folder-back {
+        .folder-back, .folder-front, .paper-slip {
             position: absolute;
+            max-width: 100%;
+        }
+
+        .folder-back {
             width: 400px;
             height: 450px;
             background: var(--folder-brown);
             border-radius: 5px 20px 5px 5px;
             box-shadow: 10px 10px 20px rgba(0,0,0,0.5);
             transform: rotate(5deg);
-            right: 0;
+            right: 5%;
             top: 20px;
         }
         
@@ -232,20 +235,19 @@
             content: '';
             position: absolute;
             top: -20px; left: 0;
-            width: 150px; height: 30px;
+            width: 120px; height: 30px;
             background: var(--folder-brown);
             border-radius: 10px 10px 0 0;
         }
 
         .folder-front {
-            position: absolute;
             width: 420px;
             height: 480px;
             background: var(--folder-dark);
             border-radius: 5px;
             box-shadow: 5px 5px 15px rgba(0,0,0,0.6);
             transform: rotate(-4deg);
-            right: -20px;
+            right: 0;
             top: 40px;
             display: flex;
             align-items: center;
@@ -255,25 +257,24 @@
 
         .folder-front h2 {
             font-family: var(--font-heavy);
-            font-size: 5rem;
+            font-size: clamp(3rem, 5vw, 5rem);
             line-height: 0.8;
             text-align: center;
             text-shadow: 2px 2px 0px rgba(0,0,0,1);
         }
 
         .paper-slip {
-            position: absolute;
             background: #fff;
             width: 300px;
             height: 400px;
-            right: 50px;
+            right: 15%;
             top: 10px;
             transform: rotate(8deg);
             box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
             background-image: repeating-linear-gradient(transparent, transparent 29px, var(--paper-lines) 30px);
         }
 
-        /* --- 3. قسم الأعمال (دفتر السلك والكولاج) --- */
+        /* --- 3. قسم الأعمال (الدفتر) --- */
         .work-section {
             position: relative;
             padding: 6rem 2rem;
@@ -282,7 +283,7 @@
 
         .notebook {
             background: var(--cream);
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 0 auto;
             min-height: 600px;
             border-radius: 10px;
@@ -309,51 +310,55 @@
             flex: 1;
             padding: 3rem;
             position: relative;
+            min-height: 500px;
         }
 
         .work-title-area {
             position: relative;
             margin-bottom: 2rem;
             transform: rotate(-3deg);
+            z-index: 6;
         }
 
         .work-title-area h2 {
             font-family: var(--font-heavy);
-            font-size: 4.5rem;
+            font-size: clamp(3rem, 5vw, 4.5rem);
             line-height: 0.9;
             color: var(--dark-red);
         }
 
         .work-title-area .script-text {
             font-family: var(--font-script);
-            font-size: 5rem;
+            font-size: clamp(3rem, 5vw, 5rem);
             color: var(--black);
             position: absolute;
-            bottom: -40px;
-            right: 40px;
+            bottom: -30px;
+            right: 20px;
         }
 
         .project-scrap {
             position: absolute;
             cursor: pointer;
-            transition: transform 0.3s, z-index 0s;
+            transition: transform 0.3s;
         }
 
         .project-scrap:hover {
-            transform: scale(1.1) rotate(0deg) !important;
+            transform: scale(1.05) rotate(0deg) !important;
             z-index: 50 !important;
         }
 
         .project-1 {
             width: 250px;
-            bottom: 50px; right: 50px;
+            bottom: 50px; right: 20px;
             transform: rotate(5deg);
             z-index: 3;
+            padding: 10px; 
+            background: #ff9d00;
         }
 
         .project-2 {
-            width: 200px;
-            top: 100px; left: 50px;
+            width: 220px;
+            top: 50px; left: 20px;
             transform: rotate(-8deg);
             z-index: 4;
             border: 10px solid #fff;
@@ -364,7 +369,7 @@
 
         .project-3 {
             width: 220px;
-            bottom: 80px; left: 150px;
+            bottom: 80px; left: 100px;
             transform: rotate(12deg);
             z-index: 5;
             padding: 10px;
@@ -381,10 +386,10 @@
 
         .denim-patch {
             position: absolute;
-            bottom: -20px;
-            left: -20px;
-            width: 300px;
-            height: 150px;
+            bottom: 20px;
+            left: 20px;
+            width: 250px;
+            height: 120px;
             background: #2a4b7c;
             background-image: url('data:image/svg+xml;utf8,<svg width="4" height="4" xmlns="http://www.w3.org/2000/svg"><rect width="4" height="4" fill="none"/><path d="M0 4L4 0M-1 1L1 -1M3 5L5 3" stroke="%233a6b9c" stroke-width="1"/></svg>');
             border: 2px dashed #f6a122;
@@ -394,7 +399,7 @@
             border-radius: 10px;
         }
 
-        /* --- 4. النوافذ المنبثقة (Modals) بأسلوب القصاصات --- */
+        /* --- 4. النوافذ المنبثقة --- */
         .modal {
             display: none;
             position: fixed;
@@ -402,7 +407,7 @@
             background-color: rgba(26, 26, 26, 0.9);
             z-index: 1000;
             overflow-y: auto;
-            padding: 2rem;
+            padding: 1rem;
             backdrop-filter: blur(5px);
         }
 
@@ -410,23 +415,23 @@
             max-width: 800px;
             margin: 2rem auto;
             background: var(--cream);
-            padding: 3rem;
+            padding: 2rem;
             position: relative;
-            box-shadow: 15px 15px 0px var(--dark-red);
+            box-shadow: 10px 10px 0px var(--dark-red);
             border: 2px solid var(--black);
             background-image: repeating-linear-gradient(transparent, transparent 29px, #d0d0d0 30px);
         }
 
         .close-btn {
             position: absolute;
-            top: -20px;
-            right: -20px;
-            width: 50px;
-            height: 50px;
+            top: -15px;
+            right: -15px;
+            width: 40px;
+            height: 40px;
             background: var(--dark-red);
             color: var(--cream);
             font-family: var(--font-heavy);
-            font-size: 2rem;
+            font-size: 1.5rem;
             border: 2px solid var(--black);
             border-radius: 50%;
             cursor: pointer;
@@ -434,21 +439,19 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 3px 3px 0px var(--black);
         }
 
         .modal-body h2 {
             font-family: var(--font-heavy);
-            font-size: 3rem;
+            font-size: clamp(2rem, 4vw, 3rem);
             margin-bottom: 0.5rem;
             color: var(--dark-red);
-            text-shadow: 1px 1px 0px rgba(0,0,0,0.2);
         }
 
         .tags {
             font-family: var(--font-script);
             color: var(--black);
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             margin-bottom: 1.5rem;
             background: rgba(255,255,255,0.5);
             padding: 5px 15px;
@@ -458,7 +461,7 @@
         }
 
         .modal-body p {
-            font-size: 1.1rem;
+            font-size: 1rem;
             background: rgba(255, 255, 255, 0.7);
             padding: 15px;
             margin-bottom: 1.5rem;
@@ -474,7 +477,6 @@
             margin-bottom: 2rem;
             overflow: hidden;
             background: #000;
-            transform: rotate(1deg);
         }
 
         .carousel-track {
@@ -503,7 +505,7 @@
             font-size: 1.5rem;
             font-family: var(--font-heavy);
         }
-        .carousel-btn.prev { right: 10px; } /* معكوسة لأن الاتجاه RTL */
+        .carousel-btn.prev { right: 10px; } 
         .carousel-btn.next { left: 10px; }
 
         /* --- 5. قسم التواصل --- */
@@ -518,32 +520,23 @@
         .contact-paper {
             background: #fff;
             max-width: 600px;
+            width: 100%;
             margin: 0 auto;
-            padding: 4rem 2rem;
+            padding: 3rem 1.5rem;
             box-shadow: 5px 5px 20px rgba(0,0,0,0.3);
             transform: rotate(-1deg);
             position: relative;
         }
 
-        .contact-paper::before {
-            content: '';
-            position: absolute;
-            top: -15px; left: 50%;
-            transform: translateX(-50%);
-            width: 100px; height: 30px;
-            background: rgba(200, 50, 50, 0.5);
-            backdrop-filter: blur(2px);
-        }
-
         .contact-paper h2 {
             font-family: var(--font-heavy);
-            font-size: 4rem;
+            font-size: clamp(2.5rem, 5vw, 4rem);
             color: var(--dark-red);
         }
 
         .contact-paper .script-text {
             font-family: var(--font-script);
-            font-size: 3rem;
+            font-size: clamp(2rem, 4vw, 3rem);
             display: block;
             margin-bottom: 2rem;
         }
@@ -556,7 +549,7 @@
 
         .social-links a {
             font-family: var(--font-heavy);
-            font-size: 2.5rem;
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
             color: var(--black);
             text-decoration: none;
             transition: color 0.3s, transform 0.3s;
@@ -565,18 +558,88 @@
 
         .social-links a:hover {
             color: var(--dark-red);
-            transform: scale(1.1) rotate(2deg);
+            transform: scale(1.05) rotate(2deg);
         }
 
+        /* ================= إعدادات التجاوب مع الهواتف (Responsive) ================= */
         @media (max-width: 900px) {
-            .hero-section { flex-direction: column; text-align: center; padding: 2rem; }
-            .hero-text { width: 100%; margin-bottom: 3rem; }
-            .hero-collage { width: 100%; display: flex; justify-content: center; }
-            .skills-section { flex-direction: column; padding: 3rem 1rem; }
-            .skills-boxes, .skills-folders { width: 100%; }
-            .notebook { flex-direction: column; }
-            .spiral { display: none; }
-            .project-scrap { position: relative; margin: 1rem auto; bottom: auto; right: auto; left: auto; top: auto; }
+            .hero-section {
+                flex-direction: column;
+                padding: 3rem 1.5rem;
+                text-align: center;
+            }
+            .hero-text {
+                width: 100%;
+                margin-bottom: 2rem;
+            }
+            .hero-collage {
+                width: 100%;
+                height: 400px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .hero-frame {
+                left: auto;
+                position: relative;
+                width: 250px;
+                height: 250px;
+                top: 0;
+            }
+            .photo-1 { width: 140px; left: -10px; top: -20px; }
+            .photo-2 { width: 150px; right: 0; bottom: -20px; }
+
+            .skills-section {
+                flex-direction: column;
+                padding: 4rem 1.5rem;
+            }
+            .skills-boxes, .skills-folders {
+                width: 100%;
+            }
+            .skills-boxes { margin-bottom: 4rem; }
+            .skill-box:nth-child(even) { margin-right: 0; }
+            .skills-folders { height: 400px; }
+            
+            /* إعادة ضبط مقاسات الملفات للهاتف لكي لا تخرج عن الشاشة */
+            .folder-back, .folder-front, .paper-slip {
+                width: 90% !important;
+                left: 5%;
+                right: auto;
+                height: 350px;
+            }
+            .folder-front h2 { font-size: 3.5rem; }
+
+            /* إعادة ضبط الدفتر ليصبح عمودي */
+            .notebook {
+                flex-direction: column;
+            }
+            .spiral {
+                display: none; /* إخفاء سلك الدفتر في الهاتف لأنه يفصل الشاشة بشكل خاطئ */
+            }
+            .notebook-page {
+                padding: 2rem 1rem;
+                min-height: auto;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            .work-title-area {
+                margin-bottom: 3rem;
+            }
+            
+            /* تحويل القصاصات لتكون تحت بعضها في الهاتف بدلاً من التموضع العشوائي */
+            .project-scrap {
+                position: relative;
+                top: auto !important;
+                bottom: auto !important;
+                left: auto !important;
+                right: auto !important;
+                margin: 1rem 0;
+                width: 90% !important;
+                max-width: 320px;
+                transform: rotate(0deg) !important; /* إلغاء الميلان القوي لتوفير مساحة */
+            }
+            .denim-patch { display: none; } /* إخفائها في الهاتف لمنع التزاحم */
         }
     </style>
 </head>
@@ -596,11 +659,11 @@
                 <h2>Rahma<br>Creates</h2>
             </div>
             <div class="polaroid photo-1">
-                <div class="tape" style="width: 60px; height: 20px; top: -10px; left: 50%; transform: translateX(-50%) rotate(-5deg);"></div>
-                <img src="https://images.unsplash.com/photo-1455390582262-044cdead27d8?w=300&q=80" alt="كتابة استراتيجية" style="width: 100%;">
+                <div class="tape" style="width: 50px; height: 15px; top: -5px; left: 50%; transform: translateX(-50%) rotate(-5deg);"></div>
+                <img src="https://images.unsplash.com/photo-1456324504439-367cee3b3c32?w=300&q=80" alt="مفكرة استراتيجية" style="width: 100%;">
             </div>
             <div class="polaroid photo-2">
-                <div class="tape" style="width: 80px; height: 25px; top: -10px; left: 50%; transform: translateX(-50%) rotate(3deg);"></div>
+                <div class="tape" style="width: 60px; height: 20px; top: -10px; left: 50%; transform: translateX(-50%) rotate(3deg);"></div>
                 <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=300&q=80" alt="تكنولوجيا وريترو" style="width: 100%;">
             </div>
         </div>
@@ -653,7 +716,7 @@
             </div>
 
             <div class="notebook-page">
-                <div class="project-scrap torn-paper project-1" style="padding: 10px; background: #ff9d00;" onclick="openModal('modal1')">
+                <div class="project-scrap torn-paper project-1" onclick="openModal('modal1')">
                     <h3 style="font-family: var(--font-script); font-size: 2rem; color: #fff; text-align: center;">Keep Going!</h3>
                     <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&q=80" alt="بيانات" class="project-img">
                     <p style="font-family: var(--font-heavy); text-align: center; line-height: 1; margin-top: 5px;">RAG Pipeline</p>
@@ -690,7 +753,8 @@
                 <div class="tags">هندسة التلقين • مسارات RAG • استراتيجية تحليلية</div>
                 
                 <div class="carousel-container" id="slider1">
-                    <button class="carousel-btn prev" onclick="moveSlide('slider1', -1)">&#10095;</button> <div class="carousel-track">
+                    <button class="carousel-btn prev" onclick="moveSlide('slider1', -1)">&#10095;</button>
+                    <div class="carousel-track">
                         <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80" alt="هندسة بيانات">
                         <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=80" alt="خوادم">
                     </div>
@@ -748,12 +812,9 @@
     </div>
 
     <script>
-        // --- النوافذ المنبثقة (Modals) ---
         function openModal(modalId) {
             document.getElementById(modalId).style.display = 'block';
             document.body.style.overflow = 'hidden'; 
-            
-            // إعادة تعيين السلايدر عند الفتح
             const sliderId = modalId.replace('modal', 'slider');
             sliderStates[sliderId] = 0;
             updateSliderPosition(sliderId);
@@ -771,7 +832,6 @@
             }
         }
 
-        // --- الكاروسيل بمسار RTL ---
         const sliderStates = { 'slider1': 0, 'slider2': 0, 'slider3': 0 };
 
         function moveSlide(sliderId, direction) {
@@ -793,7 +853,6 @@
         function updateSliderPosition(sliderId) {
             const container = document.getElementById(sliderId);
             const track = container.querySelector('.carousel-track');
-            // الاتجاه معكوس لأننا في بيئة RTL
             const offset = (sliderStates[sliderId] * 100); 
             track.style.transform = `translateX(${offset}%)`;
         }
